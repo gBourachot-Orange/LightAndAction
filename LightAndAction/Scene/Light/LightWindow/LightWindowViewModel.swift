@@ -20,9 +20,30 @@ class LightWindowViewModel: ObservableObject, LightWindowViewModelLogic {
     @Published var lightItem: LightItem
     let didChange = PassthroughSubject<LightItem, Never>()
     private var debounce_timer:Timer?
-    var sliderValue: Double = 0 {
+    var intensity: Double = 0 {
         willSet {
             self.lightItem.intensity = newValue
+            didChange.send(self.lightItem)
+            self.setLightValue()
+        }
+    }
+    var green: Float16 = 0 {
+        willSet {
+            self.lightItem.green = newValue
+            didChange.send(self.lightItem)
+            self.setLightValue()
+        }
+    }
+    var red: Float16 = 0 {
+        willSet {
+            self.lightItem.red = newValue
+            didChange.send(self.lightItem)
+            self.setLightValue()
+        }
+    }
+    var blue: Float16 = 0 {
+        willSet {
+            self.lightItem.blue = newValue
             didChange.send(self.lightItem)
             self.setLightValue()
         }
@@ -48,7 +69,19 @@ class LightWindowViewModel: ObservableObject, LightWindowViewModelLogic {
         debounce_timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { _ in
             OSCManager.shared.send(Float16(self.lightItem.intensity),
                                    identifier: self.lightItem.favoritableId,
-                                   for: .dimmer)
+                                   for: .dimmer(self.lightItem.number))
+            OSCManager.shared.send(Float16(self.lightItem.red),
+                                   identifier: self.lightItem.favoritableId,
+                                   for: .red(self.lightItem.number))
+            OSCManager.shared.send(Float16(self.lightItem.blue),
+                                   identifier: self.lightItem.favoritableId,
+                                   for: .blue(self.lightItem.number))
+            OSCManager.shared.send(Float16(self.lightItem.green),
+                                   identifier: self.lightItem.favoritableId,
+                                   for: .green(self.lightItem.number))
+            OSCManager.shared.send(Float16(self.lightItem.crossFade),
+                                   identifier: self.lightItem.favoritableId,
+                                   for: .crossFade(self.lightItem.number))
         }
     }
 }

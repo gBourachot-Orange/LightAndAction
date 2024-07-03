@@ -39,13 +39,30 @@ class OSCManager {
         oscServer.stop()
     }
     
-    enum OSCMessageType: String, CaseIterable {
-        case blue = "B1"
-        case crossFade = "C1"
-        case dimmer = "D1"
-        case green = "G1"
-        case temperature = "K1"
-        case red = "R1"
+    enum OSCMessageType {
+        case blue(Int)
+        case crossFade(Int)
+        case dimmer(Int)
+        case green(Int)
+        case temperature(Int)
+        case red(Int)
+        
+        var rawValue: String {
+            switch self {
+            case .blue(let identifier):
+                return "B\(identifier)"
+            case .crossFade(let identifier):
+                return "C\(identifier)"
+            case .dimmer(let identifier):
+                return "D\(identifier)"
+            case .green(let identifier):
+                return "G\(identifier)"
+            case .temperature(let identifier):
+                return "K\(identifier)"
+            case .red(let identifier):
+                return "R\(identifier)"
+            }
+        }
     }
 }
 

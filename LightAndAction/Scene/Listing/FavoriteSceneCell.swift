@@ -24,7 +24,16 @@ struct FavoriteSceneCell: View {
                     DataRepository.shared.set(favoritable: favoritable)
                     OSCManager.shared.send(Float16(favoritable.intensity),
                                            identifier: favoritable.favoritableId,
-                                           for: .dimmer)
+                                           for: .dimmer(favoritable.number))
+                    OSCManager.shared.send(Float16(favoritable.red),
+                                           identifier: favoritable.favoritableId,
+                                           for: .red(favoritable.number))
+                    OSCManager.shared.send(Float16(favoritable.blue),
+                                           identifier: favoritable.favoritableId,
+                                           for: .blue(favoritable.number))
+                    OSCManager.shared.send(Float16(favoritable.green),
+                                           identifier: favoritable.favoritableId,
+                                           for: .green(favoritable.number))
                 }
             }
         }

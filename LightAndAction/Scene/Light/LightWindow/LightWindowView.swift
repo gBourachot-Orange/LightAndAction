@@ -19,7 +19,7 @@ struct LightWindowView: View {
                 Text("Light window \(viewModel.lightItem.identifier)")
                 Text(viewModel.lightItem.intensity,
                      format: .percent.precision(.fractionLength(0)))
-                Slider(value: $viewModel.sliderValue,
+                Slider(value: $viewModel.intensity,
                        in: 0...1,
                        onEditingChanged: {_ in 
                     self.viewModel.saveNewValues()

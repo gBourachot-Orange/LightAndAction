@@ -87,7 +87,11 @@ extension DataRepository: DataRepositoryLogic {
         case .light:
             let lightItem = LightItem(type: .light,
                                       number: self.idArray.count+1,
-                                      intensity: 0)
+                                      intensity: 0,
+                                      green: 1,
+                                      red: 1,
+                                      blue: 1, 
+                                      crossFade: 1)
             self.set(favoritable: lightItem)
             return lightItem
 
