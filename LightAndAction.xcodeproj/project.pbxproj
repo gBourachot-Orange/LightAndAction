@@ -42,7 +42,7 @@
 		3C3511AB2C354CAA00BE3319 /* ListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingView.swift; sourceTree = "<group>"; };
 		3C3511AD2C35500D00BE3319 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		3C3511AF2C35501700BE3319 /* ListingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingViewModel.swift; sourceTree = "<group>"; };
-		A03BC4B52C34E90400253836 /* LightAndAction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightAndAction.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A03BC4B52C34E90400253836 /* DoP Companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DoP Companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A03BC4B92C34E90400253836 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		A03BC4BC2C34E90400253836 /* LightAndActionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightAndActionApp.swift; sourceTree = "<group>"; };
 		A03BC4C02C34E90800253836 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -156,7 +156,7 @@
 		A03BC4B62C34E90400253836 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A03BC4B52C34E90400253836 /* LightAndAction.app */,
+				A03BC4B52C34E90400253836 /* DoP Companion.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -263,7 +263,7 @@
 				A03CBAB42C3578170020F32C /* OSCKitCore */,
 			);
 			productName = LightAndAction;
-			productReference = A03BC4B52C34E90400253836 /* LightAndAction.app */;
+			productReference = A03BC4B52C34E90400253836 /* DoP Companion.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -484,7 +484,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbourachot.LightAndAction;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "DoP Companion";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -511,7 +511,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbourachot.LightAndAction;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "DoP Companion";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

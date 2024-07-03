@@ -10,22 +10,16 @@ import SwiftUI
 
 struct LightWindowView: View {
     
-    @StateObject private var viewModel: LightWindowViewModel
-    let favoritableIdentifier: Identifier
-    
-    init(favoritableIdentifier: Identifier) {
-        self._viewModel = StateObject(wrappedValue: LightWindowViewModel(identifier: favoritableIdentifier)) 
-        self.favoritableIdentifier = favoritableIdentifier
-    }
+    @EnvironmentObject private var viewModel: LightWindowViewModel
     
     var body: some View {
         HStack {
             Spacer().frame(width: 10)
             VStack {
-                Text("Light window \(favoritableIdentifier)")
+                Text("Light window \(viewModel.lightItem.identifier)")
                 Text(viewModel.lightItem.intensity,
                      format: .percent.precision(.fractionLength(0)))
-                Slider(value: $viewModel.lightItem.intensity,
+                Slider(value: $viewModel.sliderValue,
                        in: 0...1,
                        onEditingChanged: {_ in 
                     self.viewModel.saveNewValues()
@@ -38,5 +32,6 @@ struct LightWindowView: View {
 }
 
 #Preview {
-    LightWindowView(favoritableIdentifier: "Light-1")
+    LightWindowView()
+        .environmentObject(LightWindowViewModel(identifier: "Light-1"))
 }

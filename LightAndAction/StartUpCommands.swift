@@ -11,7 +11,6 @@ public final class StartUpCommandBuilder {
     func build() -> [Command] {
         return [
             CleanUpSetUp(),
-            //SetUpOSC()
         ]
     }
 }
@@ -23,13 +22,5 @@ protocol Command {
 struct CleanUpSetUp: Command {
     func execute() {
         DataRepository.shared.removeAll()
-    }
-}
-
-struct SetUpOSC: Command {
-    func execute() {
-        for message in OSCManager.OSCMessageType.allCases {
-            OSCManager.shared.send(0.5, identifier: "", for: message)
-        }        
     }
 }

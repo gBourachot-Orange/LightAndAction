@@ -23,7 +23,8 @@ struct LightAndActionApp: App {
         }.defaultSize(CGSize(width: 300, height: 500))
 
         WindowGroup(id: "Light", for: Identifier.self) { $lightId in
-            LightWindowView(favoritableIdentifier: lightId!)
+            LightWindowView()
+                .environmentObject(LightWindowViewModel(identifier: lightId!))
         }.defaultSize(CGSize(width: 50, height: 50))
 
         WindowGroup(id: "Camera", for: Identifier.self) { $cameraId in
