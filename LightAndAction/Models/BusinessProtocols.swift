@@ -8,7 +8,7 @@
 import Foundation
 
 typealias Identifier = String
-typealias Intensity = Double
+typealias Intensity = Float16
 typealias RepositoryKey = String
 
 protocol Favoritable: Codable {

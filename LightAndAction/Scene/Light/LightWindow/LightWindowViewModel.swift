@@ -20,7 +20,7 @@ class LightWindowViewModel: ObservableObject, LightWindowViewModelLogic {
     @Published var lightItem: LightItem
     let didChange = PassthroughSubject<LightItem, Never>()
     private var debounce_timer:Timer?
-    var intensity: Double = 0 {
+    var intensity: Float16 = 0 {
         willSet {
             self.lightItem.intensity = newValue
             didChange.send(self.lightItem)
@@ -58,30 +58,34 @@ class LightWindowViewModel: ObservableObject, LightWindowViewModelLogic {
     }
     
     func saveNewValues() {
-        debounce_timer?.invalidate()
-        debounce_timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { _ in
-            DataRepository.shared.set(favoritable: self.lightItem)
+        if debounce_timer == nil {
+            debounce_timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: false) { _ in
+                DataRepository.shared.set(favoritable: self.lightItem)
+                self.debounce_timer = nil
+            }
         }
     }
     
     func setLightValue() {
-        debounce_timer?.invalidate()
-        debounce_timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { _ in
-            OSCManager.shared.send(Float16(self.lightItem.intensity),
-                                   identifier: self.lightItem.favoritableId,
-                                   for: .dimmer(self.lightItem.number))
-            OSCManager.shared.send(Float16(self.lightItem.red),
-                                   identifier: self.lightItem.favoritableId,
-                                   for: .red(self.lightItem.number))
-            OSCManager.shared.send(Float16(self.lightItem.blue),
-                                   identifier: self.lightItem.favoritableId,
-                                   for: .blue(self.lightItem.number))
-            OSCManager.shared.send(Float16(self.lightItem.green),
-                                   identifier: self.lightItem.favoritableId,
-                                   for: .green(self.lightItem.number))
-            OSCManager.shared.send(Float16(self.lightItem.crossFade),
-                                   identifier: self.lightItem.favoritableId,
-                                   for: .crossFade(self.lightItem.number))
+        if debounce_timer == nil {
+            debounce_timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: false) { _ in
+                OSCManager.shared.send(Float16(self.lightItem.intensity),
+                                       identifier: self.lightItem.favoritableId,
+                                       for: .dimmer(self.lightItem.number))
+                OSCManager.shared.send(Float16(self.lightItem.red),
+                                       identifier: self.lightItem.favoritableId,
+                                       for: .red(self.lightItem.number))
+                OSCManager.shared.send(Float16(self.lightItem.blue),
+                                       identifier: self.lightItem.favoritableId,
+                                       for: .blue(self.lightItem.number))
+                OSCManager.shared.send(Float16(self.lightItem.green),
+                                       identifier: self.lightItem.favoritableId,
+                                       for: .green(self.lightItem.number))
+                OSCManager.shared.send(Float16(self.lightItem.crossFade),
+                                       identifier: self.lightItem.favoritableId,
+                                       for: .crossFade(self.lightItem.number))
+                self.debounce_timer = nil
+            }
         }
     }
 }
