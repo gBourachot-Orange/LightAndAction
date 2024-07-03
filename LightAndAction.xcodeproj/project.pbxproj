@@ -24,6 +24,9 @@
 		A03BC4D92C34F9F000253836 /* LightWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03BC4D72C34F9F000253836 /* LightWindowView.swift */; };
 		A03BC4DA2C34F9F000253836 /* LightWindowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03BC4D82C34F9F000253836 /* LightWindowViewModel.swift */; };
 		A03BC4DC2C3505BF00253836 /* StartUpCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03BC4DB2C3505BF00253836 /* StartUpCommands.swift */; };
+		A03CBAB32C3578170020F32C /* OSCKit in Frameworks */ = {isa = PBXBuildFile; productRef = A03CBAB22C3578170020F32C /* OSCKit */; };
+		A03CBAB52C3578170020F32C /* OSCKitCore in Frameworks */ = {isa = PBXBuildFile; productRef = A03CBAB42C3578170020F32C /* OSCKitCore */; };
+		A03CBAB82C35784C0020F32C /* OSCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03CBAB72C35784C0020F32C /* OSCManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +49,7 @@
 		A03BC4D72C34F9F000253836 /* LightWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightWindowView.swift; sourceTree = "<group>"; };
 		A03BC4D82C34F9F000253836 /* LightWindowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightWindowViewModel.swift; sourceTree = "<group>"; };
 		A03BC4DB2C3505BF00253836 /* StartUpCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartUpCommands.swift; sourceTree = "<group>"; };
+		A03CBAB72C35784C0020F32C /* OSCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSCManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A03BC4BB2C34E90400253836 /* RealityKitContent in Frameworks */,
+				A03CBAB32C3578170020F32C /* OSCKit in Frameworks */,
+				A03CBAB52C3578170020F32C /* OSCKitCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +146,7 @@
 		A03BC4B72C34E90400253836 /* LightAndAction */ = {
 			isa = PBXGroup;
 			children = (
+				A03CBAB62C3578360020F32C /* Services */,
 				3C3511A82C354B5F00BE3319 /* Resources */,
 				A03BC4D22C34EFAE00253836 /* Scene */,
 				A03BC4CB2C34E90E00253836 /* Models */,
@@ -189,6 +196,14 @@
 			path = Scene;
 			sourceTree = "<group>";
 		};
+		A03CBAB62C3578360020F32C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A03CBAB72C35784C0020F32C /* OSCManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -207,6 +222,8 @@
 			name = LightAndAction;
 			packageProductDependencies = (
 				A03BC4BA2C34E90400253836 /* RealityKitContent */,
+				A03CBAB22C3578170020F32C /* OSCKit */,
+				A03CBAB42C3578170020F32C /* OSCKitCore */,
 			);
 			productName = LightAndAction;
 			productReference = A03BC4B52C34E90400253836 /* LightAndAction.app */;
@@ -236,6 +253,9 @@
 				Base,
 			);
 			mainGroup = A03BC4AC2C34E90400253836;
+			packageReferences = (
+				A03CBAB12C3578170020F32C /* XCRemoteSwiftPackageReference "OSCKit" */,
+			);
 			productRefGroup = A03BC4B62C34E90400253836 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -270,6 +290,7 @@
 				A03BC4D52C34EFCC00253836 /* MainView.swift in Sources */,
 				3C3511AC2C354CAA00BE3319 /* ListingView.swift in Sources */,
 				A03BC4D62C34EFCC00253836 /* MainViewModel.swift in Sources */,
+				A03CBAB82C35784C0020F32C /* OSCManager.swift in Sources */,
 				A03BC4CF2C34E9A200253836 /* BusinessProtocols.swift in Sources */,
 				3C3511A72C354A3E00BE3319 /* CameraView.swift in Sources */,
 				A03BC4DC2C3505BF00253836 /* StartUpCommands.swift in Sources */,
@@ -478,10 +499,31 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		A03CBAB12C3578170020F32C /* XCRemoteSwiftPackageReference "OSCKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/orchetect/OSCKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		A03BC4BA2C34E90400253836 /* RealityKitContent */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RealityKitContent;
+		};
+		A03CBAB22C3578170020F32C /* OSCKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A03CBAB12C3578170020F32C /* XCRemoteSwiftPackageReference "OSCKit" */;
+			productName = OSCKit;
+		};
+		A03CBAB42C3578170020F32C /* OSCKitCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A03CBAB12C3578170020F32C /* XCRemoteSwiftPackageReference "OSCKit" */;
+			productName = OSCKitCore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

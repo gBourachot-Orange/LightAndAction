@@ -23,8 +23,9 @@ struct LightWindowView: View {
             Spacer().frame(width: 10)
             VStack {
                 Text("Light window \(favoritableIdentifier)")
-                Text("Intensity: \(viewModel.lightItem.intensity)")
-                Slider(value: $viewModel.lightItem.intensity, 
+                Text(viewModel.lightItem.intensity,
+                     format: .percent.precision(.fractionLength(0)))
+                Slider(value: $viewModel.lightItem.intensity,
                        in: 0...1,
                        onEditingChanged: {_ in 
                     self.viewModel.saveNewValues()
