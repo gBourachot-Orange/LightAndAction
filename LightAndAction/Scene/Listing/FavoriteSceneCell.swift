@@ -22,6 +22,9 @@ struct FavoriteSceneCell: View {
             Button("Load") {
                 for favoritable in favoriteScene.favoritables {
                     DataRepository.shared.set(favoritable: favoritable)
+                    OSCManager.shared.send(Float16(favoritable.intensity),
+                                           identifier: favoritable.favoritableId,
+                                           for: .dimmer)
                 }
             }
         }
