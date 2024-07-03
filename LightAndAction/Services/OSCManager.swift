@@ -39,7 +39,7 @@ class OSCManager {
         oscServer.stop()
     }
     
-    enum OSCMessageType: String {
+    enum OSCMessageType: String, CaseIterable {
         case blue = "B1"
         case crossFade = "C1"
         case dimmer = "D1"

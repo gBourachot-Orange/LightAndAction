@@ -39,6 +39,9 @@ extension DataRepository: DataRepositoryLogic {
             case .camera:
                 let favoritable = try? JSONDecoder().decode(CameraItem.self, from: data)
                 return favoritable
+            case .scene:
+                let favoritable = try? JSONDecoder().decode(FavoriteScene.self, from: data)
+                return favoritable
             }
             return nil
         }
@@ -94,6 +97,8 @@ extension DataRepository: DataRepositoryLogic {
                                         dataURL: "dance_video".loadFile()!)
             self.set(favoritable: cameraItem)
             return cameraItem
+        case .scene:
+            fatalError("Should not happen")
         }
     }
 }

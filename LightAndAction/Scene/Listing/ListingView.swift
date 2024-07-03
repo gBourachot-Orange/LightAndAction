@@ -8,8 +8,21 @@
 import SwiftUI
 
 struct ListingView: View {
+    @StateObject private var viewModel = ListingViewModel()
+    
     var body: some View {
-        Text("List lights and Cameras")
+        VStack {
+            Button("Save Scene") {
+                viewModel.saveScene()
+            }
+            List {
+                ForEach(viewModel.favoriteScenes) { favoriteScene in
+                    FavoriteSceneCell(favoriteScene: favoriteScene)
+                }
+            }
+        }.task {
+            self.viewModel.loadFavoriteScenes()
+        }
     }
 }
 
