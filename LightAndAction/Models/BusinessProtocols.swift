@@ -19,4 +19,5 @@ protocol Favoritable: Codable {
 
 enum ManagedItemType: String, CaseIterable {
     case light
+    case camera
 }

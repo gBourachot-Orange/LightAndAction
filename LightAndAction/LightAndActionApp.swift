@@ -19,11 +19,15 @@ struct LightAndActionApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView()
-        }.defaultSize(CGSize(width: 50, height: 30))
-            
-        WindowGroup("Light", for: Identifier.self) { $lightId in
+            SideBarView()
+        }.defaultSize(CGSize(width: 200, height: 170))
+
+        WindowGroup(id: "Light", for: Identifier.self) { $lightId in
             LightWindowView(favoritableIdentifier: lightId!)
         }.defaultSize(CGSize(width: 50, height: 50))
+
+        WindowGroup(id: "Camera", for: Identifier.self) { $cameraId in
+            VideoPlayerView(favoritableIdentifier: cameraId!)
+        }.defaultSize(CGSize(width: 500, height: 470))
     }
 }
