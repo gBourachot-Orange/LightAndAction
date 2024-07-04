@@ -28,6 +28,9 @@
 		A03CBAB32C3578170020F32C /* OSCKit in Frameworks */ = {isa = PBXBuildFile; productRef = A03CBAB22C3578170020F32C /* OSCKit */; };
 		A03CBAB52C3578170020F32C /* OSCKitCore in Frameworks */ = {isa = PBXBuildFile; productRef = A03CBAB42C3578170020F32C /* OSCKitCore */; };
 		A03CBAB82C35784C0020F32C /* OSCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03CBAB72C35784C0020F32C /* OSCManager.swift */; };
+		A04F814A2C36979400118606 /* SwiftUIJoystick in Frameworks */ = {isa = PBXBuildFile; productRef = A04F81492C36979400118606 /* SwiftUIJoystick */; };
+		A04F814D2C36999C00118606 /* Joystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04F814C2C36999C00118606 /* Joystick.swift */; };
+		A04F81502C369AC500118606 /* PrimitiveTypesAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04F814F2C369AC500118606 /* PrimitiveTypesAdditions.swift */; };
 		A0B741C62C358D2E00ADA92B /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B741C42C358D2E00ADA92B /* VideoPlayerView.swift */; };
 		A0B741C72C358D2E00ADA92B /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B741C52C358D2E00ADA92B /* PlayerViewModel.swift */; };
 		A0B741C92C358D3E00ADA92B /* dance_video.mov in Resources */ = {isa = PBXBuildFile; fileRef = A0B741C82C358D3E00ADA92B /* dance_video.mov */; };
@@ -59,6 +62,8 @@
 		A03BC4D82C34F9F000253836 /* LightWindowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightWindowViewModel.swift; sourceTree = "<group>"; };
 		A03BC4DB2C3505BF00253836 /* StartUpCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartUpCommands.swift; sourceTree = "<group>"; };
 		A03CBAB72C35784C0020F32C /* OSCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSCManager.swift; sourceTree = "<group>"; };
+		A04F814C2C36999C00118606 /* Joystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joystick.swift; sourceTree = "<group>"; };
+		A04F814F2C369AC500118606 /* PrimitiveTypesAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveTypesAdditions.swift; sourceTree = "<group>"; };
 		A0B741C42C358D2E00ADA92B /* VideoPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoPlayerView.swift; path = VideoPlayer/VideoPlayerView.swift; sourceTree = "<group>"; };
 		A0B741C52C358D2E00ADA92B /* PlayerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerViewModel.swift; path = VideoPlayer/PlayerViewModel.swift; sourceTree = "<group>"; };
 		A0B741C82C358D3E00ADA92B /* dance_video.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = dance_video.mov; sourceTree = "<group>"; };
@@ -75,6 +80,7 @@
 			files = (
 				A03BC4BB2C34E90400253836 /* RealityKitContent in Frameworks */,
 				A03CBAB32C3578170020F32C /* OSCKit in Frameworks */,
+				A04F814A2C36979400118606 /* SwiftUIJoystick in Frameworks */,
 				A03CBAB52C3578170020F32C /* OSCKitCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -167,6 +173,8 @@
 		A03BC4B72C34E90400253836 /* LightAndAction */ = {
 			isa = PBXGroup;
 			children = (
+				A04F814E2C369AAC00118606 /* Helpers */,
+				A04F814B2C36998800118606 /* UI Components */,
 				A0B741CE2C358D7200ADA92B /* Core  */,
 				A03CBAB62C3578360020F32C /* Services */,
 				3C3511A82C354B5F00BE3319 /* Resources */,
@@ -228,6 +236,22 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		A04F814B2C36998800118606 /* UI Components */ = {
+			isa = PBXGroup;
+			children = (
+				A04F814C2C36999C00118606 /* Joystick.swift */,
+			);
+			path = "UI Components";
+			sourceTree = "<group>";
+		};
+		A04F814E2C369AAC00118606 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A04F814F2C369AC500118606 /* PrimitiveTypesAdditions.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		A0B741CD2C358D7200ADA92B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,6 +288,7 @@
 				A03BC4BA2C34E90400253836 /* RealityKitContent */,
 				A03CBAB22C3578170020F32C /* OSCKit */,
 				A03CBAB42C3578170020F32C /* OSCKitCore */,
+				A04F81492C36979400118606 /* SwiftUIJoystick */,
 			);
 			productName = LightAndAction;
 			productReference = A03BC4B52C34E90400253836 /* DoP Companion.app */;
@@ -295,6 +320,7 @@
 			mainGroup = A03BC4AC2C34E90400253836;
 			packageReferences = (
 				A03CBAB12C3578170020F32C /* XCRemoteSwiftPackageReference "OSCKit" */,
+				A04F81482C36979400118606 /* XCRemoteSwiftPackageReference "SwiftUIJoystick" */,
 			);
 			productRefGroup = A03BC4B62C34E90400253836 /* Products */;
 			projectDirPath = "";
@@ -340,8 +366,10 @@
 				A03BC4DC2C3505BF00253836 /* StartUpCommands.swift in Sources */,
 				A0B741D32C35905B00ADA92B /* FavoriteSceneCell.swift in Sources */,
 				A03BC4D92C34F9F000253836 /* LightWindowView.swift in Sources */,
+				A04F814D2C36999C00118606 /* Joystick.swift in Sources */,
 				A03BC4DA2C34F9F000253836 /* LightWindowViewModel.swift in Sources */,
 				3C3511AE2C35500D00BE3319 /* CameraViewModel.swift in Sources */,
+				A04F81502C369AC500118606 /* PrimitiveTypesAdditions.swift in Sources */,
 				A0B741C62C358D2E00ADA92B /* VideoPlayerView.swift in Sources */,
 				A0B741C72C358D2E00ADA92B /* PlayerViewModel.swift in Sources */,
 				3C3511C82C36973800BE3319 /* LightViewCell.swift in Sources */,
@@ -556,6 +584,14 @@
 				minimumVersion = 0.5.1;
 			};
 		};
+		A04F81482C36979400118606 /* XCRemoteSwiftPackageReference "SwiftUIJoystick" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/michael94ellis/SwiftUIJoystick";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -572,6 +608,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A03CBAB12C3578170020F32C /* XCRemoteSwiftPackageReference "OSCKit" */;
 			productName = OSCKitCore;
+		};
+		A04F81492C36979400118606 /* SwiftUIJoystick */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A04F81482C36979400118606 /* XCRemoteSwiftPackageReference "SwiftUIJoystick" */;
+			productName = SwiftUIJoystick;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

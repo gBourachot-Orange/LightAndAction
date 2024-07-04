@@ -48,6 +48,17 @@ class OSCManager {
         case temperature(Int)
         case red(Int)
         
+        case pan
+        case tilt
+        case cyan
+        case magenta
+        case yellow
+        case cct
+        case cf
+        case zoom
+        case focus
+        case dim
+        
         var rawValue: String {
             switch self {
             case .blue(let identifier):
@@ -62,6 +73,26 @@ class OSCManager {
                 return "K\(identifier)"
             case .red(let identifier):
                 return "R\(identifier)"
+            case .pan:
+                return "Pa"
+            case .tilt:
+                return "Ti"
+            case .cyan:
+                return "CY"
+            case .magenta:
+                return "Ma"
+            case .yellow:
+                return "Ye"
+            case .cct:
+                return "Ct"
+            case .cf:
+                return "Cx"
+            case .zoom:
+                return "Zo"
+            case .focus:
+                return "Fo"
+            case .dim:
+                return "Di"
             }
         }
     }
@@ -86,5 +117,16 @@ extension OSCManager: OSCManagerLogic {
             self.send(0, for: .temperature(number))
             self.send(0, for: .red(number))
         }
+        
+        self.send(0, for: .pan)
+        self.send(0, for: .tilt)
+        self.send(0, for: .cyan)
+        self.send(0, for: .magenta)
+        self.send(0, for: .yellow)
+        self.send(0, for: .cct)
+        self.send(0, for: .cf)
+        self.send(0, for: .zoom)
+        self.send(0, for: .focus)
+        self.send(0, for: .dim)
     }
 }
