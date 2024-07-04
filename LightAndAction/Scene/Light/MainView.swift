@@ -29,27 +29,40 @@ struct MainView: View {
         self.dragDiameter = width
         self.shape = shape
     }
-    
+
     var body: some View {
-        return VStack {
-            Text("Hello, world!")
-            Button("SetUp Light"){
-                Task {
-                    if let lightItem = try? await self.viewModel.newLight() {
-                        openWindow(id: "Light", value: lightItem.favoritableId)
+        VStack(spacing: 20) {
+            HStack {
+                Button("SetUp Light"){
+                    Task {
+                        if let lightItem = try? await self.viewModel.newLight() {
+                            openWindow(id: "Light", value: lightItem.favoritableId)
+                        }
                     }
                 }
+                Button("Activate the Projecter"){
+                    self.viewModel.resetLights()
+                    self.viewModel.startTimer()
+                }
+                Button("Turn on/off"){
+                    self.viewModel.turnOnOff()
+                }
             }
-            Button("Reset all lights"){
-                self.viewModel.resetLights()
-                self.viewModel.startTimer()
-            }
-            Button("Turn on/off"){
-                self.viewModel.turnOnOff()
-            }
-            Joystick(monitor: viewModel.monitor, width: 100)
+            .padding()
+            lightList
         }
-        .padding()
+        .ornament(attachmentAnchor: .scene(.trailing)) {
+            Joystick(monitor: viewModel.monitor, width: 150)
+                .padding()
+        }
+    }
+
+    private var lightList: some View {
+        List {
+            ForEach(viewModel.lightList, id: \.favoritableId) { lightWindowItem in
+                LightViewCell(lightItem: lightWindowItem, viewModel: viewModel)
+            }
+        }
     }
 }
 

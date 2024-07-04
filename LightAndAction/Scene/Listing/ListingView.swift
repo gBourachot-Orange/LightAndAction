@@ -11,7 +11,7 @@ struct ListingView: View {
     @StateObject private var viewModel = ListingViewModel()
     
     var body: some View {
-        VStack {
+        VStack(spacing: 30) {
             Button("Save Scene") {
                 viewModel.saveScene()
             }
@@ -20,7 +20,9 @@ struct ListingView: View {
                     FavoriteSceneCell(favoriteScene: favoriteScene)
                 }
             }
-        }.task {
+        }
+        .padding()
+        .task {
             self.viewModel.loadFavoriteScenes()
         }
     }
