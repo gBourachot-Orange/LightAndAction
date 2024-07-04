@@ -15,10 +15,13 @@ protocol MainViewModelLogic: AnyObject {
 
 @MainActor class MainViewModel: ObservableObject, MainViewModelLogic {
 
+    @Published var lightList: [LightItem] = []
+
     func newLight() async throws -> LightItem {
         guard let lightItem = DataRepository.shared.newObject(type: .light) as? LightItem else {
             throw DataRepository.RepositoryError.typeConversionFailed
         }
+        lightList.append(lightItem)
         return lightItem
     }
     
