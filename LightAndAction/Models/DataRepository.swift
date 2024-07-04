@@ -34,26 +34,22 @@ class DataRepository {
 
 extension DataRepository: DataRepositoryLogic {
     func get(favoritableId: Identifier, type: ManagedItemType) -> Favoritable? {
-
+        if let data = UserDefaults.standard.object(forKey: favoritableId) as? Data {
             switch type {
             case .light:
-                if let data = UserDefaults.standard.object(forKey: "favoritablesLight") as? Data {
-                    let favoritables = try? JSONDecoder().decode([LightItem].self, from: data)
-                    return favoritables?.first(where: { $0.favoritableId == favoritableId })
-                }
+                let favoritable = try? JSONDecoder().decode(LightItem.self, from: data)
+                                return favoritable
 
             case .camera:
-                if let data = UserDefaults.standard.object(forKey: "favoritablesCamera") as? Data {
-                    let favoritables = try? JSONDecoder().decode([CameraItem].self, from: data)
-                    return favoritables?.first(where: { $0.favoritableId == favoritableId })
-                }
+                let favoritable = try? JSONDecoder().decode(CameraItem.self, from: data)
+                                return favoritable
             case .scene:
-                if let data = UserDefaults.standard.object(forKey: "favoritablesScenes") as? Data {
-                    let favoritables = try? JSONDecoder().decode([FavoriteScene].self, from: data)
-                    return favoritables?.first(where: { $0.favoritableId == favoritableId })
-                }
+                let favoritable = try? JSONDecoder().decode(FavoriteScene.self, from: data)
+                                return favoritable
             }
             return nil
+        }
+    return nil
 
     }
     
