@@ -24,6 +24,7 @@ class MainViewModel: ObservableObject, MainViewModelLogic {
     private var timer: Timer?
     private var isOn: Bool = false
 
+    @MainActor
     func newLight() async throws -> LightItem {
         guard let lightItem = DataRepository.shared.newObject(type: .light) as? LightItem else {
             throw DataRepository.RepositoryError.typeConversionFailed
@@ -36,6 +37,7 @@ class MainViewModel: ObservableObject, MainViewModelLogic {
         OSCManager.shared.resetAllLights()
     }
     
+    @MainActor
     func startTimer() {
         if self.timer == nil {
             self.timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer in
@@ -45,6 +47,7 @@ class MainViewModel: ObservableObject, MainViewModelLogic {
         }
     }
     
+    @MainActor
     func turnOnOff() {
         if !isOn {
             OSCManager.shared.send(0, for: .cyan)
