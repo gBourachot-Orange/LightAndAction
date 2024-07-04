@@ -15,7 +15,8 @@ struct MainView: View {
     
     @StateObject private var viewModel = MainViewModel()
     @Environment(\.openWindow) private var openWindow
-    
+    @State var isProjectorVisible: Visibility = .hidden
+
     /// The monitor object to observe the user input on the Joystick in XY or Polar coordinates
     /// The width or diameter in which the Joystick will report values
     ///  For example: 100 will provide 0-100, with (50,50) being the origin
@@ -43,6 +44,7 @@ struct MainView: View {
                 Button("Activate the Projecter"){
                     self.viewModel.resetLights()
                     self.viewModel.startTimer()
+                    isProjectorVisible = .visible
                 }
                 Button("Turn on/off"){
                     self.viewModel.turnOnOff()
@@ -51,7 +53,7 @@ struct MainView: View {
             .padding()
             lightList
         }
-        .ornament(attachmentAnchor: .scene(.trailing)) {
+        .ornament(visibility: isProjectorVisible, attachmentAnchor: .scene(.trailing)) {
             Joystick(monitor: viewModel.monitor, width: 150)
                 .padding()
         }
@@ -61,6 +63,16 @@ struct MainView: View {
         List {
             ForEach(viewModel.lightList, id: \.favoritableId) { lightWindowItem in
                 LightViewCell(lightItem: lightWindowItem, viewModel: viewModel)
+            }
+        }
+        .overlay {
+            if viewModel.lightList.isEmpty {
+                ContentUnavailableView {
+                        Label("Empty Lights", systemImage: "light.strip.2.fill")
+                } description: {
+                    Text("No lights added yet ... 💡")
+                }
+
             }
         }
     }
