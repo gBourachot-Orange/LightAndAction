@@ -11,6 +11,7 @@ public final class StartUpCommandBuilder {
     func build() -> [Command] {
         return [
             CleanUpSetUp(),
+            ResetAllLights(),
         ]
     }
 }
@@ -22,5 +23,11 @@ protocol Command {
 struct CleanUpSetUp: Command {
     func execute() {
         DataRepository.shared.removeAll()
+    }
+}
+
+struct ResetAllLights: Command {
+    func execute() {
+        OSCManager.shared.resetAllLights()
     }
 }

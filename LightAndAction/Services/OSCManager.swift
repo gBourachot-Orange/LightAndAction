@@ -9,7 +9,8 @@ import Foundation
 import OSCKit
 
 protocol OSCManagerLogic {
-    func send(_ value: Float16, identifier: String, for message: OSCManager.OSCMessageType)
+    func send(_ value: Float16, for message: OSCManager.OSCMessageType)
+    func resetAllLights()
 }
 
 class OSCManager {
@@ -67,12 +68,23 @@ class OSCManager {
 }
 
 extension OSCManager: OSCManagerLogic {
-    func send(_ value: Float16, identifier: String, for message: OSCManager.OSCMessageType) {
+    func send(_ value: Float16, for message: OSCManager.OSCMessageType) {
         try? oscClient.send(
             .message("/\(message.rawValue)", values: [value]),
             to: remoteIP, // remote IP address or hostname
             port: serverPort // standard OSC port but can be changed
         )
         print("Message sent", message.rawValue, value)
+    }
+    
+    func resetAllLights() {
+        for number in 1...4 {
+            self.send(0, for: .blue(number))
+            self.send(0, for: .crossFade(number))
+            self.send(0, for: .dimmer(number))
+            self.send(0, for: .green(number))
+            self.send(0, for: .temperature(number))
+            self.send(0, for: .red(number))
+        }
     }
 }
