@@ -19,10 +19,39 @@ struct VideoPlayerView: View {
 
 
     var body: some View {
-        VStack {
-            Text("Camera window \(favoritableIdentifier)")
-            VideoPlayer(player: viewModel.videoPlayer)
+        VStack(spacing: 25) {
+            video
+            otherVideos
         }
+        .background(.clear)
+    }
+
+    private var video: some View {
+        VideoPlayer(player: viewModel.videoPlayer)
+            .ornament(
+                visibility: .visible,
+                attachmentAnchor: .scene(.top),
+                contentAlignment: .center
+            ) {
+                Text("Camera window \(favoritableIdentifier)")
+                    .padding()
+                    .glassBackgroundEffect()
+            }
+    }
+
+    private var otherVideos: some View {
+        
+        ScrollView(.horizontal) {
+            HStack {
+                ForEach(0 ..< 12) { item in
+                    VideoPlayer(player: viewModel.videoPlayer)
+                        .frame(width: 200, height: 100)
+                        .presentationCornerRadius(10)
+                        .padding()
+                }
+            }
+        }
+
     }
 }
 

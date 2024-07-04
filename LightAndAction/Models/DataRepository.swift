@@ -19,7 +19,10 @@ protocol DataRepositoryLogic {
 class DataRepository {
     static let shared: DataRepositoryLogic = DataRepository()
     private var idArray: [Identifier] = []
-    
+    private var favoritablesLight: [LightItem] = []
+    private var favoritablesCamera: [CameraItem] = []
+    private var favoritablesScenes: [FavoriteScene] = []
+
     private init() {
         // Shared instance
     }
@@ -31,21 +34,27 @@ class DataRepository {
 
 extension DataRepository: DataRepositoryLogic {
     func get(favoritableId: Identifier, type: ManagedItemType) -> Favoritable? {
-        if let data = UserDefaults.standard.object(forKey: favoritableId) as? Data {
+
             switch type {
             case .light:
-                let favoritable = try? JSONDecoder().decode(LightItem.self, from: data)
-                return favoritable
+                if let data = UserDefaults.standard.object(forKey: "favoritablesLight") as? Data {
+                    let favoritables = try? JSONDecoder().decode([LightItem].self, from: data)
+                    return favoritables?.first(where: { $0.favoritableId == favoritableId })
+                }
+
             case .camera:
-                let favoritable = try? JSONDecoder().decode(CameraItem.self, from: data)
-                return favoritable
+                if let data = UserDefaults.standard.object(forKey: "favoritablesCamera") as? Data {
+                    let favoritables = try? JSONDecoder().decode([CameraItem].self, from: data)
+                    return favoritables?.first(where: { $0.favoritableId == favoritableId })
+                }
             case .scene:
-                let favoritable = try? JSONDecoder().decode(FavoriteScene.self, from: data)
-                return favoritable
+                if let data = UserDefaults.standard.object(forKey: "favoritablesScenes") as? Data {
+                    let favoritables = try? JSONDecoder().decode([FavoriteScene].self, from: data)
+                    return favoritables?.first(where: { $0.favoritableId == favoritableId })
+                }
             }
             return nil
-        }
-        return nil
+
     }
     
     func set(favoritable: any Favoritable) {

@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import SwiftUI
 
 protocol MainViewModelLogic: AnyObject {
     func newLight() async throws -> LightItem
 }
 
 @MainActor class MainViewModel: ObservableObject, MainViewModelLogic {
-    
+
     func newLight() async throws -> LightItem {
         guard let lightItem = DataRepository.shared.newObject(type: .light) as? LightItem else {
             throw DataRepository.RepositoryError.typeConversionFailed

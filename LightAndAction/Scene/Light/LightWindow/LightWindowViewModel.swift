@@ -20,6 +20,7 @@ class LightWindowViewModel: ObservableObject, LightWindowViewModelLogic {
     @Published var lightItem: LightItem
     let didChange = PassthroughSubject<LightItem, Never>()
     private var debounce_timer:Timer?
+    
     var intensity: Float16 = 0 {
         willSet {
             self.lightItem.intensity = newValue
@@ -27,21 +28,21 @@ class LightWindowViewModel: ObservableObject, LightWindowViewModelLogic {
             self.setLightValue()
         }
     }
-    var green: Float16 = 0 {
+    var green: Float16 = 1 {
         willSet {
             self.lightItem.green = newValue
             didChange.send(self.lightItem)
             self.setLightValue()
         }
     }
-    var red: Float16 = 0 {
+    var red: Float16 = 1 {
         willSet {
             self.lightItem.red = newValue
             didChange.send(self.lightItem)
             self.setLightValue()
         }
     }
-    var blue: Float16 = 0 {
+    var blue: Float16 = 1 {
         willSet {
             self.lightItem.blue = newValue
             didChange.send(self.lightItem)
