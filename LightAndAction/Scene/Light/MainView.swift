@@ -44,7 +44,9 @@ struct MainView: View {
                 Button("Activate the Projecter"){
                     self.viewModel.resetLights()
                     self.viewModel.startTimer()
-                    isProjectorVisible = .visible
+                    withAnimation {
+                        isProjectorVisible = .visible
+                    }
                 }
                 Button("Turn on/off"){
                     self.viewModel.turnOnOff()
@@ -54,9 +56,30 @@ struct MainView: View {
             lightList
         }
         .ornament(visibility: isProjectorVisible, attachmentAnchor: .scene(.trailing)) {
-            Joystick(monitor: viewModel.monitor, width: 150)
-                .padding()
+            sideProjectorView
         }
+    }
+
+    private var sideProjectorView: some View {
+        HStack {
+            Spacer(minLength: 500)
+            Rectangle()
+                .foregroundColor(.clear)
+                .glassBackgroundEffect()
+                .frame(
+                    width: 300,
+                    height: 400
+                )
+                .overlay {
+                    VStack(spacing: 25) {
+                        Text("Projector")
+                            .font(.title)
+                            .bold()
+                        Joystick(monitor: viewModel.monitor, width: 150)
+                    }
+                }
+        }
+        .rotation3DEffect(.degrees(-30), axis: .y)
     }
 
     private var lightList: some View {

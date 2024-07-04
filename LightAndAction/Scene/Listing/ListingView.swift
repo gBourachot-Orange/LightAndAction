@@ -20,6 +20,16 @@ struct ListingView: View {
                     FavoriteSceneCell(favoriteScene: favoriteScene)
                 }
             }
+            .overlay {
+                if viewModel.favoriteScenes.isEmpty {
+                    ContentUnavailableView {
+                            Label("Empty Scenes", systemImage: "camera.metering.center.weighted")
+                    } description: {
+                        Text("No scenes snapshots taken yet ... ")
+                    }
+
+                }
+            }
         }
         .padding()
         .task {
