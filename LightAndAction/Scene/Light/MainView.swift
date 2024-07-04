@@ -31,8 +31,8 @@ struct MainView: View {
     }
 
     var body: some View {
-        return VStack {
-            VStack(spacing: 20) {
+        VStack(spacing: 20) {
+            HStack {
                 Button("SetUp Light"){
                     Task {
                         if let lightItem = try? await self.viewModel.newLight() {
@@ -40,18 +40,21 @@ struct MainView: View {
                         }
                     }
                 }
-                lightList
+                Button("Activate the Projecter"){
+                    self.viewModel.resetLights()
+                    self.viewModel.startTimer()
+                }
+                Button("Turn on/off"){
+                    self.viewModel.turnOnOff()
+                }
             }
-            Button("Reset all lights"){
-                self.viewModel.resetLights()
-                self.viewModel.startTimer()
-            }
-            Button("Turn on/off"){
-                self.viewModel.turnOnOff()
-            }
-            Joystick(monitor: viewModel.monitor, width: 100)
+            .padding()
+            lightList
         }
-        .padding()
+        .ornament(attachmentAnchor: .scene(.trailing)) {
+            Joystick(monitor: viewModel.monitor, width: 150)
+                .padding()
+        }
     }
 
     private var lightList: some View {
