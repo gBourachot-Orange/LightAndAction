@@ -20,7 +20,7 @@ struct LightAndActionApp: App {
     var body: some Scene {
         WindowGroup {
             SideBarView()
-        }.defaultSize(CGSize(width: 1000, height: 970))
+        }.defaultSize(CGSize(width: 600, height: 670))
 
         WindowGroup(id: "Light", for: Identifier.self) { $lightId in
             LightWindowView()

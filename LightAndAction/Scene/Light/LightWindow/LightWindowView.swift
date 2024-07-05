@@ -21,7 +21,7 @@ struct LightWindowView: View {
         HStack {
             Spacer().frame(width: 10)
             VStack {
-                Text("Light \(viewModel.lightItem.favoritableId)")
+                Text("Light \(viewModel.lightItem.number)")
                     .font(.largeTitle)
                 Slider(value: $viewModel.intensity,
                        in: 0...1,

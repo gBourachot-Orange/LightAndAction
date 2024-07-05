@@ -16,6 +16,7 @@ struct MainView: View {
     @StateObject private var viewModel = MainViewModel()
     @Environment(\.openWindow) private var openWindow
     @State var isProjectorVisible: Visibility = .hidden
+    @State var isProjectorTurnedOn = false
 
     /// The monitor object to observe the user input on the Joystick in XY or Polar coordinates
     /// The width or diameter in which the Joystick will report values
@@ -48,9 +49,6 @@ struct MainView: View {
                         isProjectorVisible = .visible
                     }
                 }
-                Button("Turn on/off"){
-                    self.viewModel.turnOnOff()
-                }
             }
             .padding()
             lightList
@@ -61,8 +59,9 @@ struct MainView: View {
     }
 
     private var sideProjectorView: some View {
-        HStack {
-            Spacer(minLength: 500)
+        
+        return HStack {
+            Spacer(minLength: 350)
             Rectangle()
                 .foregroundColor(.clear)
                 .glassBackgroundEffect()
@@ -76,6 +75,11 @@ struct MainView: View {
                             .font(.title)
                             .bold()
                         Joystick(monitor: viewModel.monitor, width: 150)
+                        Toggle("Turn On/Off the light", isOn: $isProjectorTurnedOn)
+                            .padding()
+                        .onChange(of: isProjectorTurnedOn) {
+                            self.viewModel.turnOnOff()
+                        }
                     }
                 }
         }
