@@ -21,6 +21,7 @@ struct VideoPlayerView: View {
     var body: some View {
         VStack(spacing: 25) {
             video
+                .clipShape(RoundedRectangle(cornerRadius: 14))
             otherVideos
         }
         .background(.clear)
@@ -45,8 +46,8 @@ struct VideoPlayerView: View {
             HStack {
                 ForEach(0 ..< 12) { item in
                     VideoPlayer(player: viewModel.videoPlayer)
-                        .frame(width: 200, height: 100)
-                        .presentationCornerRadius(10)
+                        .clipShape(RoundedRectangle(cornerRadius: 14))
+                        .frame(width: 175, height: 100)
                         .padding()
                 }
             }

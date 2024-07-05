@@ -21,7 +21,7 @@ struct LightWindowView: View {
         HStack {
             Spacer().frame(width: 10)
             VStack {
-                Text("Light \(viewModel.lightItem.identifier)")
+                Text("Light \(viewModel.lightItem.number)")
                     .font(.largeTitle)
                 Slider(value: $viewModel.intensity,
                        in: 0...1,
@@ -29,12 +29,21 @@ struct LightWindowView: View {
                     self.viewModel.saveNewValues()
                 })
 
-                ColorPicker(selection: $lightColor,
-                            supportsOpacity: false) {
+                HStack(spacing: 10) {
                     Label("Select light color", systemImage: "paintpalette.fill")
-                }
+                    ColorPicker(selection: $lightColor,
+                                supportsOpacity: false)
+                    {
+                        Label("Select light color", systemImage: "paintpalette.fill")
+                    }
                     .onChange(of: lightColor, initial: true, setColors)
+                    .scaleEffect(CGSize(width: 1.2, height: 1.2))
+                    .labelsHidden()
                     .padding()
+
+                }
+
+
             }
             Spacer().frame(width: 10)
         }
@@ -55,7 +64,6 @@ struct LightWindowView: View {
             .animation(.default, value: viewModel.lightItem.intensity)
             .contentTransition(.numericText())
         }
-
         .padding()
     }
 
